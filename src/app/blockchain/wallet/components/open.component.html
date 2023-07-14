@@ -1,0 +1,12 @@
+<div class="row flex-wrap">
+    <div class="col-12 p-4" *ngFor="let wall of wallets">
+
+            <p>{{ wall }}</p>
+
+                <input  autocomplete="off" [(ngModel)]="password" type="password" name="password" placeholder="Password"/>
+                <button  (click)="unlockWallet(wall)">{{ 'app.lthn.wallet.button.unlock-wallet' | translate }}</button>
+
+    </div>
+</div>
+
+

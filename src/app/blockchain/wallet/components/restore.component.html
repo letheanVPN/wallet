@@ -1,0 +1,43 @@
+
+        <form [formGroup]="restoreWalletForm" autocomplete="off">
+            <section>
+
+                    <input  type="text" formControlName="filename" [placeholder]="'app.lthn.wallet.label.filename' | translate ">
+
+                    <input  type="password" autocomplete="new-password" formControlName="password" [placeholder]="'app.lthn.wallet.label.wallet-password' | translate ">
+
+                    <input  type="password" formControlName="password_confirm" [placeholder]="'app.lthn.wallet.label.wallet-password-confirm' | translate">
+
+            </section>
+
+            <section>
+                    <input  type="text" formControlName="address" [placeholder]="'app.lthn.wallet.label.address' | translate">
+            </section>
+
+            <ng-container *ngIf="!restoreWalletForm.value['viewonly_wallet']" >
+                <input  type="password" formControlName="spendkey" [placeholder]=" 'app.lthn.wallet.label.spend-key' | translate">
+            </ng-container>
+
+                <input  type="password" formControlName="viewkey" [placeholder]="'app.lthn.wallet.label.view-key' | translate">
+
+                        Optional parameters
+
+
+                    <input  type="text" formControlName="restore_height" [placeholder]="'app.lthn.wallet.label.restore-height' | translate">
+
+
+                    <input type="checkbox" formControlName="autosave_current">{{ 'app.lthn.wallet.label.autosave' | translate }}
+
+
+                <section>
+                    <input type="checkbox" formControlName="viewonly_wallet">View only wallet
+                </section>
+
+            <p>
+                <button   (click)="restoreWallet()">{{ 'app.lthn.wallet.button.restore-wallet' | translate }}</button>
+            </p>
+        </form>
+
+
+
+

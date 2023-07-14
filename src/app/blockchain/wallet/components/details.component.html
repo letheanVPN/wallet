@@ -1,0 +1,17 @@
+<div *ngIf="wallet['balance']">
+
+        <p>Wallet: {{wallet.address}}</p>
+
+            <div class="row">
+                <div class="col-4" *ngIf="wallet.balance['balance']">
+                    <dt>Balance</dt>
+                    <dd>{{ wallet.balance['balance'] | toCoin }}</dd>
+                    <dt>Available to spend</dt>
+                    <dd>{{ wallet.balance['unlocked_balance'] | toCoin }}</dd>
+                </div>
+                <div class="col-4">
+                    <dt>Transactions</dt>
+                    <dd>{{ transactions.length }}</dd>
+                </div>
+            </div>
+</div>
