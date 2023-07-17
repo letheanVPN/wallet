@@ -88,8 +88,6 @@ export class BlockLedgerComponent implements OnInit, OnDestroy {
 
 		 const req = await this.chain.getBlocks(Math.max(0, end_height), Math.max(0, start_height));
 		 BlockLedgerComponent._blocks = req['headers'].reverse()
-
-    console.log(BlockLedgerComponent._blocks)
 	}
 
 

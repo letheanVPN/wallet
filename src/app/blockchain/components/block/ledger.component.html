@@ -22,6 +22,7 @@
               <tr>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Height</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Difficulty</th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Time Minted</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Transactions</th>
                 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Nonce</th>
                 <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
@@ -31,10 +32,11 @@
               </thead>
               <tbody class="divide-y divide-gray-200 bg-white">
               <tr *ngFor="let block of blocks">
-                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">{{block['height']}}</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{block['difficulty']}}</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{block['num_txes']}}</td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{block['nonce']}}</td>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 font-mono">{{block['height']}}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 font-mono">{{block['difficulty'] | hashrate }}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 font-mono">{{block['timestamp'] | amFromUnix }}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 font-mono">{{block['num_txes']}}</td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 font-mono">{{block['nonce']}}</td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                   <a routerLink="/chain/block/{{block['hash']}}" class="text-indigo-600 hover:text-indigo-900">View</a>
                 </td>
