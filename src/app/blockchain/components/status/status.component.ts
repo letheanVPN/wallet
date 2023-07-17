@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy} from '@angular/core';
 import {interval, Subscription} from "rxjs";
 import {WebsocketService} from "../../../services/websocket.service";
 import {FileSystemService} from "../../../services/filesystem/file-system.service";
 import {AppConfigService} from '../../../services/app-config.service';
-import {BlockchainApi} from "@lethean/api-typescript";
+import {BlockchainApi} from "../../../../../api-typescript";
 
 @Component({
   selector: 'lthn-chain-status',

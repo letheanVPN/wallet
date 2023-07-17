@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-// import {BlockchainService} from '../blockchain.service';
 import {FileSystemService} from '../../services/filesystem/file-system.service';
-import {BlockchainApi} from "@lethean/api-typescript";
-// import 'codemirror/mode/properties/properties.js';
+import {BlockchainApi} from "../../../../api-typescript";
 @Component({
 	selector: 'lthn-chain-config',
 	templateUrl: './config.component.html'

@@ -2,9 +2,7 @@ import {Component, OnDestroy, OnInit, TemplateRef, ViewChild} from '@angular/cor
 import {ChainGetInfo} from '../../interfaces/props/get_info';
 import {interval, Subscription} from 'rxjs';
 import {BlockHeader} from '../../interfaces/types/blockHeader';
-// import {BlockchainService} from '../../blockchain.service';
 import {UntypedFormControl, Validators} from '@angular/forms';
-import {BlockchainApi, createConfiguration} from "@lethean/api-typescript";
 import {BlockchainAPIService} from "../../blockchain.service";
 @Component({
 	selector: 'lthn-chain-ledger',

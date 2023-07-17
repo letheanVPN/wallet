@@ -19,7 +19,6 @@
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/platform-server": "^16.1.0",
     "@angular/router": "^16.1.0",
-    "@lethean/api-typescript": "/home/snider/WebstormProjects/server/docs/sdk/client/typescript/dist",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
     "config-ini-parser": "^1.6.1",
@@ -28,6 +27,7 @@
     "ngx-moment": "^6.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "whatwg-fetch": "^3.6.2",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {

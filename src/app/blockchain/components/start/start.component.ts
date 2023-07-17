@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BlockchainApi, InputOutputApi, createConfiguration, BlockchainLetheanDaemonStartDTO, BlockchainLetheanRPCDTO} from "@lethean/api-typescript";
+import {BlockchainApi, InputOutputApi, createConfiguration, BlockchainLetheanDaemonStartDTO, BlockchainLetheanRPCDTO} from "../../../../../api-typescript";
 import {Router} from "@angular/router";
 import {WebsocketService} from "../../../services/websocket.service";
 import {BlockchainAPIService} from "../../blockchain.service";

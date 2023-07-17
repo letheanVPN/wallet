@@ -1,15 +1,10 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {rpcBody} from '../services/json-rpc';
 import {ChainGetInfo} from "./interfaces/props/get_info";
-import {BlockchainApi, createConfiguration} from "@lethean/api-typescript";
 import {
-  BlockchainLetheanRPCDTO
-} from "../../../../server/docs/sdk/client/typescript/dist/models/BlockchainLetheanRPCDTO";
-import {HttpException} from "../../../../server/docs/sdk/client/typescript/dist/http/http";
-import {
-  BlockchainLetheanDaemonStartDTO
-} from "../../../../server/docs/sdk/client/typescript/dist/models/BlockchainLetheanDaemonStartDTO";
+  BlockchainApi, createConfiguration,
+  BlockchainLetheanRPCDTO, BlockchainLetheanDaemonStartDTO
+} from "../../../api-typescript";
 
 @Injectable({
     providedIn: 'root'
