@@ -1,21 +1,45 @@
-<!--<ngx-section >-->
-<!--    <ngx-input-->
-<!--            type="text"-->
-<!--            [label]="'Payment Address'"-->
-<!--            [autofocus]="true"-->
-<!--            [ngModel]="transfer.destinations[0].address"-->
-<!--            [hint]="'Destination Address'"-->
-<!--            (change)="transfer.destinations[0].address = $event.trim()">-->
-<!--    </ngx-input>-->
+<form autocomplete="off">
+  <div class="space-y-12">
+    <div class="border-b border-gray-900/10 pb-12">
+      <h2 class="text-base font-semibold leading-7 text-gray-900">Create Transaction</h2>
+      <div class="sm:col-span-4">
+        <label for="wallet-name" class="block text-sm font-medium leading-6 text-gray-900">Destination Address</label>
+        <div class="mt-2">
+          <input [ngModel]="transfer.destinations[0].address"
+                 id="wallet-name" name="wallet-name" type="text" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div class="sm:col-span-4">
+        <label for="payment-id" class="block text-sm font-medium leading-6 text-gray-900">Payment ID</label>
+        <div class="mt-2">
+          <input [ngModel]="transfer.payment_id" id="payment-id" name="wallet-name" type="text" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </div>
+      </div>
+      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-3">
+          <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Mixins</label>
+          <div class="mt-2">
+            <input [ngModel]="transfer.mixin" type="text" name="password" id="password" autocomplete="new-password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
 
-<!--    <ngx-input-->
-<!--            type="text"-->
-<!--            [label]="'Payment ID'"-->
-<!--            [autofocus]="false"-->
-<!--            [ngModel]="transfer.payment_id"-->
-<!--            [hint]="'Optional, payments without a payment ID can result in loss of LTHN.'"-->
-<!--            (change)="transfer.payment_id = $event">-->
-<!--    </ngx-input>-->
+        <div class="sm:col-span-3">
+          <label for="password-confirm" class="block text-sm font-medium leading-6 text-gray-900">Amount</label>
+          <div class="mt-2">
+            <input [ngModel]="transfer.destinations[0].amount" type="number" name="password-confirm" id="password-confirm" autocomplete="password-confirm" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+    <button (click)="sendTransfer()" type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">SEND</button>
+  </div>
+</form>
+
 
 <!--    <ngx-select-->
 <!--            [label]="'Mixins'"-->
@@ -70,8 +94,3 @@
 <!--    <ngx-long-press-button (longPress)="sendTransfer()" icon="upload-outline"></ngx-long-press-button>-->
 
 <!--</ngx-section>-->
-
-
-
-
-d
