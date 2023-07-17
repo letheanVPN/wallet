@@ -48,8 +48,11 @@ export class TransactionsComponent implements OnInit {
 
 	async loadTransactions() {
 
-		this.rows = await this.wallet.getTransfers(this.opts).then((data) => Object.values(data).flat());
-		console.log(this.rows);
-
+		this.rows = await this.wallet.getTransfers(this.opts).then((data) => {
+      if(data.length > 0) {
+        return Object.values(data).flat()
+      }
+      return []
+    });
 	}
 }

@@ -1,33 +1,29 @@
-<!--<ngx-section >-->
-<!--    <ng-container *ngIf="rows.length > 0">-->
-<!--        <ngx-datatable-->
-<!--                class="table"-->
-<!--                [cssClasses]="'table'"-->
-<!--                [rows]="rows"-->
-<!--                [loadingIndicator]="true"-->
-<!--                [columnMode]="ColumnMode.force"-->
-<!--                [limit]="10"-->
-<!--                [trackByProp]="'timestamp'"-->
-<!--                [sorts]="[{ prop: 'timestamp', dir: 'desc' }]"-->
-<!--        >-->
-<!--            <ngx-datatable-column prop="type"></ngx-datatable-column>-->
-<!--            <ngx-datatable-column name="Height"></ngx-datatable-column>-->
-<!--            <ngx-datatable-column prop="unlock_time"></ngx-datatable-column>-->
-<!--            <ngx-datatable-column name="Txid">-->
-<!--            </ngx-datatable-column>-->
-<!--            <ngx-datatable-column name="Amount">-->
-<!--                <ng-template let-value="value" ngx-datatable-cell-template>-->
-<!--                    {{ value | toCoin | number:'1.0-8'}}-->
-<!--                </ng-template>-->
-<!--            </ngx-datatable-column>-->
-<!--            <ngx-datatable-column name="Timestamp">-->
-<!--                <ng-template let-value="value" ngx-datatable-cell-template>-->
-<!--                    {{ value | timeAgo }}-->
-<!--                </ng-template>-->
-<!--            </ngx-datatable-column>-->
-<!--        </ngx-datatable>-->
-<!--    </ng-container>-->
-<!--    <ng-container *ngIf="rows.length < 1">-->
-<!--        <h2>You have no transactions, you need to send LTHN to your wallet</h2>-->
-<!--    </ng-container>-->
-<!--</ngx-section>-->
+<ng-container *ngIf="rows.length > 0">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Type</th>
+      <th>Height</th>
+      <th>Unlocked Time</th>
+      <th>Txid</th>
+      <th>Amount</th>
+      <th>Timestamp</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of rows">
+<!--      <td>{{row['type']}}</td>-->
+<!--      <td>{{row['height']}}</td>-->
+<!--      <td>{{row['unlock_time']}}</td>-->
+<!--      <td>{{row['txid']}}</td>-->
+<!--      <td>{{row['amount'] | toCoin | number:'1.0-8'}}</td>-->
+<!--      <td>{{row['timestamp'] | timeAgo}}</td>-->
+    </tr>
+
+    </tbody>
+  </table>
+</ng-container>
+<ng-container *ngIf="rows.length < 1">
+  <h2>You have no transactions, you need to send LTHN to your wallet</h2>
+</ng-container>
+
