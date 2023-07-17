@@ -46,7 +46,11 @@ const routes: Routes = [
 			description: 'view.chain.description',
 			robots: false
 		}
-	}
+	},
+  {
+    path: 'wallet',
+    loadChildren: () => import('./wallet/wallet.module').then(m => m.WalletModule)
+  }
 
 ];
 
