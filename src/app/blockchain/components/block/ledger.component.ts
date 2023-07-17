@@ -12,8 +12,6 @@ import {BlockchainAPIService} from "../../blockchain.service";
 })
 export class BlockLedgerComponent implements OnInit, OnDestroy {
 
-	columns: any = [];
-
 	page = {
 		size: 25,
 		totalElements: 0,
@@ -21,24 +19,8 @@ export class BlockLedgerComponent implements OnInit, OnDestroy {
 		pageNumber: 0
 	};
 
-	allColumns = [
-		{prop: 'height', name: 'app.lthn.chain.words.height', default: true},
-		{prop: 'difficulty', name: 'app.lthn.chain.words.difficulty', default: true},
-		{prop: 'hash', name: 'app.lthn.chain.words.hash', default: true},
-		{prop: 'orphan_status', name: 'app.lthn.chain.words.orphan_status', default: true},
-		//{ prop: 'reward', name: 'app.lthn.chain.table.th.reward', default: true },
-		{prop: 'timestamp', name: 'app.lthn.chain.words.timestamp', default: true},
-		//	{ prop: 'block_size', name: 'Block Size', default: true },
-		//{ prop: 'depth', name: 'app.lthn.chain.table.th.depth', default: true },
-		//{ prop: 'major_version', name: 'Block Major Version', default: true },
-		//	{ prop: 'minor_version', name: 'Block Minor Version', default: false },
-		//	{ prop: 'nonce', name: 'Block Nonce', default: false },
-			{ prop: 'num_txes', name: 'app.lthn.chain.words.tx_count', default: true },
-		//	{ prop: 'prev_hash', name: 'Last Hash', default: true },
-	];
-	// ColumnMode = ColumnMode;
 	// @ts-ignore
-  blocks: BlockHeader[];
+  private static _blocks: BlockHeader[];
 	chainInfo: ChainGetInfo|undefined;
 	@ViewChild('blocksTable') table: any;
 	@ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>|undefined;
@@ -53,6 +35,12 @@ export class BlockLedgerComponent implements OnInit, OnDestroy {
 
 	}
 
+  /**
+   * @return {BlockHeader[]} blocks
+   */
+  public get blocks(): BlockHeader[] {
+    return BlockLedgerComponent._blocks;
+  }
 	async ngOnInit() {
 		this.blockSearch = new UntypedFormControl('', [Validators.required]);
 
@@ -99,9 +87,9 @@ export class BlockLedgerComponent implements OnInit, OnDestroy {
 		let end_height = this.page.totalElements - this.page.size - this.page.pageNumber * this.page.size
 
 		 const req = await this.chain.getBlocks(Math.max(0, end_height), Math.max(0, start_height));
-		 this.blocks = req['headers'].reverse()
+		 BlockLedgerComponent._blocks = req['headers'].reverse()
 
-    console.log(this.blocks)
+    console.log(BlockLedgerComponent._blocks)
 	}
 
 
@@ -109,30 +97,6 @@ export class BlockLedgerComponent implements OnInit, OnDestroy {
 		this.sub.forEach((s) => s.unsubscribe());
 	}
 
-
-	toggleExpandRow(row: any) {
-		console.log('Toggled Expand Row!', row);
-		this.table.rowDetail.toggleExpandRow(row);
-	}
-
-	onDetailToggle(event: any) {
-		console.log('Detail Toggled', event);
-	}
-
-
-	step = 0;
-
-	setStep(index: number) {
-		this.step = index;
-	}
-
-	nextStep() {
-		this.step++;
-	}
-
-	prevStep() {
-		this.step--;
-	}
 
 	async nextPage() {
 
