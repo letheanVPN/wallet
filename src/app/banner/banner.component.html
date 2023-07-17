@@ -1,3 +1,7 @@
 <div class="w-full flex items-center justify-center h-11 bg-gradient-to-r from-[#1DC0CC] via-[#8E15F8] to-[#E20000]">
-  <a href="https://testnet.net" target="_blank" class="text-white font-bold">CONNECTED TO TESTNET</a>
+  <p *ngIf="!chainInfo?.testnet"class="text-white font-bold">CONNECTED TO MAINNET</p>
+  <p *ngIf="chainInfo?.testnet" class="text-white font-bold">CONNECTED TO TESTNET</p>
+  &nbsp;|&nbsp;
+  <p *ngIf="chainInfo && chainInfo.height" class="text-white font-bold">SYNC STATUS: {{ chainInfo.height }} / {{ chainInfo.target_height }} ({{ (chainInfo.height/chainInfo.target_height*100) | number: '2.0-0' }}%)</p>
 </div>
+

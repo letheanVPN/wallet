@@ -15,10 +15,18 @@ import {
     providedIn: 'root'
 })
 export class BlockchainAPIService {
-    public chainInfo: ChainGetInfo|undefined = undefined;
+  get chainInfo(): ChainGetInfo | undefined {
+    return BlockchainAPIService._chainInfo;
+  }
+
+  set chainInfo(value: ChainGetInfo | undefined) {
+    BlockchainAPIService._chainInfo = value;
+  }
+  private static _chainInfo: ChainGetInfo|undefined = undefined;
   private chain: BlockchainApi;
     constructor() {
       this.chain = new BlockchainApi(createConfiguration())
+      this.getInfo().catch(e => console.log(e))
     }
 
   async walletRpc(params: any) {
