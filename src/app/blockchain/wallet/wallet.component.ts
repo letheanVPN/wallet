@@ -14,12 +14,14 @@ export class WalletComponent implements OnInit, AfterViewInit {
 
 
 	public ngAfterViewInit() {
-		this.wallet.startWalletService()
+    this.wallets = this.wallet.walletList()
+    this.wallet.getActiveAddress()
 	}
 
 	public ngOnInit(): void {
-		this.wallets = this.wallet.walletList()
-		this.wallet.getActiveAddress()
+
+    this.wallet.startWalletService()
+
 	}
 
 	public openWallet(name: string){

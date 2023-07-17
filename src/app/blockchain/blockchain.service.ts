@@ -37,12 +37,13 @@ export class BlockchainAPIService {
       } as BlockchainLetheanRPCDTO
       return JSON.parse(await this.chain.walletJsonRpc(request)).result
     } catch (e) {
+      console.log(e)
       return false
     }
   }
 
   startWalletService() {
-      // this.chain.startWallet({walletDir:'wallets', rpcBindPort: '36963', disableRpcLogin: false});
+      this.chain.startWallet({walletDir:'wallets', rpcBindPort: 36963, disableRpcLogin: false});
   }
 
     async chainRpc(params: any, isRetry: boolean = false): Promise<any> {

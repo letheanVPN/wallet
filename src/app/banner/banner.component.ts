@@ -17,6 +17,5 @@ export class BannerComponent implements OnInit {
      await this.chain.getInfo()
     }
     this.chainInfo = await this.chain.chainInfo;
-    console.log(this.chainInfo)
   }
 }

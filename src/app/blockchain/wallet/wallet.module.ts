@@ -13,6 +13,7 @@ import {DetailsComponent} from './components/details.component';
 import {AddComponent} from './components/add.component';
 import {OpenComponent} from './components/open.component';
 import {TransferComponent} from './components/transfer/transfer.component';
+import {WalletRoutingModule} from "./wallet-routing.module";
 
 
 @NgModule({
@@ -33,8 +34,8 @@ import {TransferComponent} from './components/transfer/transfer.component';
     ReactiveFormsModule,
     TranslateModule,
     PipesModule,
-    RouterModule,
     FormsModule,
+    WalletRoutingModule,
     RouterLink
   ]
 })

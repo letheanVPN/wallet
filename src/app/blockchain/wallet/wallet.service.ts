@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {WalletRpcService} from '../../services/wallet.rpc.service';
 import {Balance, GetTransfersIn, OpenWallet, RestoreWallet, TransferIn} from './interfaces';
 import {FileSystemService} from '../../services/filesystem/file-system.service';
-
+import {BlockchainAPIService} from "../blockchain.service";
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +17,7 @@ export class WalletService {
   public address: string | undefined = undefined;
 
 
-  constructor(private fs: FileSystemService, private rpc: WalletRpcService) {
+  constructor(private fs: FileSystemService, private rpc: WalletRpcService, private chain: BlockchainAPIService) {
   }
 
   /**
@@ -26,9 +26,10 @@ export class WalletService {
    * @returns {Promise<void>}
    */
   startWalletService() {
-    return this.rpc.startWalletService().subscribe((data) => {
-      console.log(data)
-    });
+    this.chain.startWalletService()
+    // return this.rpc.startWalletService().subscribe((data) => {
+    //   console.log(data)
+    // });
   }
 
   /**
@@ -69,7 +70,12 @@ export class WalletService {
    * Get the address of the wallet logged in.
    */
   getActiveAddress() {
-    this.rpc.getAddress().then((data) => this.address = data.address)
+    this.rpc.getAddress().then((data) => {
+      console.log(data)
+      if (data && data.address !== undefined) {
+        this.address = data.address
+      }
+    })
   }
 
   /**
