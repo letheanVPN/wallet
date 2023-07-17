@@ -6,6 +6,10 @@ import {BlockchainApi, createConfiguration} from "@lethean/api-typescript";
 import {
   BlockchainLetheanRPCDTO
 } from "../../../../server/docs/sdk/client/typescript/dist/models/BlockchainLetheanRPCDTO";
+import {HttpException} from "../../../../server/docs/sdk/client/typescript/dist/http/http";
+import {
+  BlockchainLetheanDaemonStartDTO
+} from "../../../../server/docs/sdk/client/typescript/dist/models/BlockchainLetheanDaemonStartDTO";
 
 @Injectable({
     providedIn: 'root'
@@ -33,15 +37,22 @@ export class BlockchainAPIService {
       // this.chain.startWallet({walletDir:'wallets', rpcBindPort: '36963', disableRpcLogin: false});
   }
 
-    async chainRpc(params: any) {
+    async chainRpc(params: any, isRetry: boolean = false): Promise<any> {
         try {
             let request = {
                 "url": params['url'],
                 "req": JSON.stringify(rpcBody(params['method'])(params['params']))
             } as BlockchainLetheanRPCDTO
                  return JSON.parse(await this.chain.jsonRpc(request)).result
-        } catch (e) {
-            return false
+        } catch (e: any) {
+          if(e.code === 500 && !isRetry) {
+            await this.chain.startDaemon({
+              configFile: 'letheand.conf',
+              dataDir: 'data/lthn',
+              logDir: 'logs/lthn'
+            } as BlockchainLetheanDaemonStartDTO)
+            return await this.chainRpc(params, true)
+          }
         }
     }
 
