@@ -36,31 +36,24 @@ export class BlockchainStartComponent implements OnInit {
 
   async ngOnInit() {
     this.daemonInstalled = await this.checkInstalled()
+    this.daemonStarted = await this.checkDaemonRunning()
 
     if(!this.daemonInstalled) {
       // download daemon
       console.log('downloading daemon')
       this.installLethean()
-    }
-
-    if(this.daemonInstalled) {
+    } else {
       console.log('starting daemon')
       await this.api.startDaemon({
         configFile: 'letheand.conf',
         dataDir: 'data/lthn',
         logDir: 'logs/lthn'
       } as BlockchainLetheanDaemonStartDTO)
-    }else {
-      return false;
+
+      this.daemonStarted = await this.checkDaemonRunning()
     }
 
-    this.daemonStarted = await this.checkDaemonRunning()
-
-    if (this.daemonStarted){
-      await this.router.navigateByUrl('/')
-    }
-
-    return true;
+    return this.daemonStarted;
   }
 
   checkInstalled(){

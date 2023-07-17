@@ -13,6 +13,7 @@ import {BlockchainStartComponent} from "./blockchain/components/start/start.comp
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {BlockchainAPIService} from "./blockchain/blockchain.service";
+import {NgOptimizedImage} from "@angular/common";
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -40,7 +41,8 @@ const routes: Routes = [
       }
     }),
     RouterModule.forRoot(routes, {useHash: true}),
-    BlockchainModule
+    BlockchainModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]
