@@ -10,6 +10,7 @@ export class WalletComponent implements OnInit, AfterViewInit {
 
 	public wallets: string[] = [];
 	name: string = ''
+  public tab: string = 'details'
 	constructor(public wallet: WalletService) {}
 
 
@@ -23,6 +24,10 @@ export class WalletComponent implements OnInit, AfterViewInit {
     this.wallet.startWalletService()
 
 	}
+  onChange(newValue: string) {
+    console.log(newValue);
+    this.tab = newValue;
+  }
 
 	public openWallet(name: string){
 		console.log(name)

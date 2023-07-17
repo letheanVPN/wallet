@@ -1,19 +1,16 @@
-<div *ngIf="wallet['balance']">
-
-  <p>Wallet: {{wallet.address}}</p>
-  <h3 *ngIf="wallet.balance">Balance: {{ wallet.balance.unlocked_balance | toCoin}}</h3>
-  <h4 *ngIf="wallet.balance && wallet.balance.unlocked_balance != wallet.balance.balance">Locked
-    Balance: {{wallet.balance.balance - wallet.balance.unlocked_balance|toCoin}}</h4>
-  <div class="row">
-    <div class="col-4" *ngIf="wallet.balance">
-      <dt *ngIf="wallet.balance">Balance</dt>
-      <dd *ngIf="wallet.balance">{{ wallet.balance.unlocked_balance | toCoin }}</dd>
-      <dt>Available to spend</dt>
-      <dd>{{ wallet.balance['unlocked_balance'] | toCoin }}</dd>
+<div *ngIf="wallet.balance">
+  <dl class="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-3">
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Wallet Balance</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ wallet.balance.unlocked_balance | toCoin}}</dd>
     </div>
-    <div class="col-4">
-      <dt>Transactions</dt>
-      <dd>{{ transactions.length }}</dd>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Available to spend</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ wallet.balance.unlocked_balance | toCoin }}</dd>
     </div>
-  </div>
+    <div class="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+      <dt class="truncate text-sm font-medium text-gray-500">Transactions</dt>
+      <dd class="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{{ transactions.length }}</dd>
+    </div>
+  </dl>
 </div>
